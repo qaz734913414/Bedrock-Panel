@@ -48,7 +48,6 @@ cmd | 执行命令 | 字符串 | 执行结果
 
 `dcchk.sh <操作目标> <操作项> <容器名> <参数>`  
 几个特殊命令:  
-`dcchk.sh container create <容器名称> <端口>`  
 `dcchk.sh container cp <容器名称> <宿主机路径> <容器路径>`  
 
 操作目标 | 操作类型 | 参数 | 说明 | 返回值
@@ -59,8 +58,8 @@ server | status | 无 |服务器状态 | true/false
 server | deploy | 版本号 |部署服务端 | true/false
 server | update | 版本号 |更新服务端 | true/false
 server | exec | 字符串 | 执行指令 | true/false
-whitelist | on | 开启白名单 | true/false
-whitelist | off | 关闭白名单 | true/false 
+whitelist | on | 无 | 开启白名单 | true/false
+whitelist | off | 无 | 关闭白名单 | true/false 
 whitelist | add | Xbox ID | 加白名单 | true/false
 whitelist | rm | Xbox ID | 删白名单 | true/false
 whitelist | query | Xbox ID | 查询白名单 | true/false
@@ -72,10 +71,12 @@ config | allow-cheats | true/false | 允许作弊 | true/false
 config | seed | 字符串 | 修改种子 | true/false
 config | player-permission | visitor/member/operator | 修改玩家权限 | true/false
 config | textures-required | true/false | 锁定材质包 | true/false
-config | query | 以上 | 查询配置项 | 相应值
+config | query | whitelist/description/max-player/mode/difficulty/allow-cheats/seed/player-permission/textures-required/version | 查询配置项 | 相应值
+container | create | 端口号 | 创建容器 | true/false
 container | del | 字符串 | 删除容器 | true/false
 container | exec | 字符串 | 执行shell命令 | 相应返回值
 container | rm | 路径 | 删除文件 | 相应返回值
 container | backup | 无 | 备份存档文件 | true/false
+container | restore | 无 | 恢复存档文件 | true/false
 container | start | 无 | 启动容器 | true/false
 container | stop | 无 | 停止容器 | true/false
