@@ -64,7 +64,7 @@ case $1 in
 			screen -x -S $SCREENNAME -p 0 -X stuff "stop"
 			screen -x -S $SCREENNAME -p 0 -X stuff "\n"
 			rm log.txt
-			sleep 1.5s
+			sleep 3s
 			if screen -ls | grep -q $SCREENNAME ; then
 				echo false
 			else

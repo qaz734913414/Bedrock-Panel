@@ -58,7 +58,9 @@ server | stop | 无 |关闭服务器 | true/false
 server | status | 无 |服务器状态 | true/false
 server | deploy | 版本号 |部署服务端 | true/false
 server | update | 版本号 |更新服务端 | true/false
-server | execute | 字符串 | 执行指令 | true/false 
+server | exec | 字符串 | 执行指令 | true/false
+whitelist | on | 开启白名单 | true/false
+whitelist | off | 关闭白名单 | true/false 
 whitelist | add | Xbox ID | 加白名单 | true/false
 whitelist | rm | Xbox ID | 删白名单 | true/false
 whitelist | query | Xbox ID | 查询白名单 | true/false
@@ -71,6 +73,7 @@ config | seed | 字符串 | 修改种子 | true/false
 config | player-permission | visitor/member/operator | 修改玩家权限 | true/false
 config | textures-required | true/false | 锁定材质包 | true/false
 config | query | 以上 | 查询配置项 | 相应值
+container | del | 字符串 | 删除容器 | true/false
 container | exec | 字符串 | 执行shell命令 | 相应返回值
 container | rm | 路径 | 删除文件 | 相应返回值
 container | backup | 无 | 备份存档文件 | true/false
