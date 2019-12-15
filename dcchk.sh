@@ -5,7 +5,17 @@
 IMAGENAME=mc
 case $1 in 
 	"container"):
-		case $2 in 
+		case $2 in
+			"status"):
+				if [ -z "$3" ]; then
+					echo false
+				fi
+				if docker ps -a | grep $3 | grep -q Up; then
+					echo true
+				else
+					echo false
+				fi
+				;;	
 			"create"):
 				if [ -z "$3" ] || [ -z "$4" ]; then
 					echo false
@@ -23,12 +33,23 @@ case $1 in
 					echo false
 				fi
 				;;
-			"cp"):
+			"put"):
 				if [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ] ; then
 					echo false
 					exit
 				fi
 				if docker cp $4 $3:$5 > /dev/null 2>&1 ; then
+					echo true
+				else
+					echo false
+				fi
+				;;
+			"get"):
+				if [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ] ; then
+					echo false
+					exit
+				fi
+				if docker cp $3:$5 $4 > /dev/null 2>&1 ; then
 					echo true
 				else
 					echo false
@@ -57,7 +78,7 @@ case $1 in
 					exit 
 				fi
 				if docker ps -a | grep $3 | grep -q Up ; then
-					docker exec $3 $4 
+					docker exec $3 bash -c "$4" 
 				else
 					echo false
 				fi
@@ -83,7 +104,7 @@ case $1 in
 					exit 
 				fi
 				if docker ps -a | grep $3 | grep -q Up ; then
-					docker exec $3 zip -r /opt/backup.zip /opt/mc/worlds /opt/mc/server.properties /opt/mc/whitelist.json /opt/mc/permissions.json > /dev/null 2>&1
+					docker exec $3 bash -c "cd /opt/mc && zip -r /opt/backup.zip worlds server.properties whitelist.json permissions.json > /dev/null 2>&1"
 					if docker exec $3 ls /opt/backup.zip > /dev/null 2>&1 ; then
 						echo true
 					else
@@ -207,7 +228,7 @@ case $1 in
 					exit
 				fi
 				if docker ps -a | grep $3 | grep -q Up; then
-					docker exec $3 mc cmd $4
+					docker exec $3 mc cmd "$4"
 				else
 					echo false
 				fi

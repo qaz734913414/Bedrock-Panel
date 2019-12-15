@@ -47,10 +47,11 @@ pq | 查询服务端配置 | wl,md,mmp,mm,df,ac,sd,tr,pp,vs(版本) | 对应值/
 cmd | 执行命令 | 字符串 | 执行结果
 
 `dcchk.sh <操作目标> <操作项> <容器名> <参数>`  
-几个特殊命令:  
-`dcchk.sh container cp <容器名称> <宿主机路径> <容器路径>`  
+复制操作:
+`dcchk.sh container get <容器名称> <宿主机路径> <容器路径>`
+`dcchk.sh container put <容器名称> <宿主机路径> <容器路径>`
 
-操作目标 | 操作类型 | 参数 | 说明 | 返回值
+操作目标 | 操作项 | 参数 | 说明 | 返回值
 --- | --- | --- | --- | ---
 server | start | 无 |开启服务器 | true/false
 server | stop | 无 |关闭服务器 | true/false
@@ -74,6 +75,7 @@ config | textures-required | true/false | 锁定材质包 | true/false
 config | query | whitelist/description/max-player/mode/difficulty/allow-cheats/seed/player-permission/textures-required/version | 查询配置项 | 相应值
 container | create | 端口号 | 创建容器 | true/false
 container | del | 字符串 | 删除容器 | true/false
+container | status | 无 | 容器状态 | true/false
 container | exec | 字符串 | 执行shell命令 | 相应返回值
 container | rm | 路径 | 删除文件 | 相应返回值
 container | backup | 无 | 备份存档文件 | true/false

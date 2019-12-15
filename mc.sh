@@ -104,7 +104,7 @@ case $1 in
 		fi
 		screen -x -S $SCREENNAME -p 0 -X stuff "whitelist add \"$2\" "
 		screen -x -S $SCREENNAME -p 0 -X stuff "\n"
-		sleep 1s
+		sleep 2s
 		if grep -q -w "$2" whitelist.json ;then
 			echo true
 		else
