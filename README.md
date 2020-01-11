@@ -54,7 +54,7 @@
 
 ### 主界面
 
-![main.jpg](./docs/images/help.png)
+![main.ppg](./docs/images/main.png)
 
 ### 登录页
 
