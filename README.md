@@ -12,8 +12,7 @@ If you want to help us for the development of web pages,please follow this link:
 * ### File description
 **dockerfile**: *Image build config*  
 **mc.sh**:*In-container BDS controlling script*  
-**setup.sh**:*A script helps build docker image,do some file movement and setup some permissions.*  
-**keep.cpp**:*Just some shit prevents docker from stop running*  
+**setup.sh**:*A script helps build docker image,do some file movement and setup some permissions.*    
 * ### Usage
 Clone everything in this branch into a folder,then execute :  
 `sudo docker build -t mc .`  

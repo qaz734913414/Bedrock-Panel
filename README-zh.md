@@ -11,8 +11,7 @@ mc.sh脚本位于`/usr/local/bin`,且创建了符号链接`mc`
 * ### 文件说明
 **dockerfile**: *镜像构建文件*  
 **mc.sh**:*docker容器内部主要操作文件*  
-**setup.sh**:*docker镜像构建时需要的文件,主要目的是设置一些启动参数与文件的移动*  
-**keep.cpp**:*一个没卵用的程序，主要目的是防止docker退出*  
+**setup.sh**:*docker镜像构建时需要的文件,主要目的是设置一些启动参数与文件的移动*   
 * ### 使用方法
 将所有文件克隆到一个目录下.  
 `sudo docker build -t mc .`  

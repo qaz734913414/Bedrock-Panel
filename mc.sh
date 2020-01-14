@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author:CNflysky@Bedrock-Panel
-#last edited by CNflysky 19.12.10
+#last edited by CNflysky 20.1.14
 SERVERROOT="/opt/mc"
 PROPERTIESFILE="server.properties"
 SCREENNAME="mc"
@@ -64,7 +64,10 @@ case $1 in
 			screen -x -S $SCREENNAME -p 0 -X stuff "stop"
 			screen -x -S $SCREENNAME -p 0 -X stuff "\n"
 			rm log.txt
-			sleep 3s
+			while screen -ls | grep -q $SCREENNAME
+			do
+				sleep 0.1s
+			done
 			if screen -ls | grep -q $SCREENNAME ; then
 				echo false
 			else
