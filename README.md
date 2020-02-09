@@ -16,8 +16,8 @@
 
 #### Bedrock-Panel 官方
 
-- 官网: https://bedrock-panel.com
-- 使用文档: https://bedrock-panel.com/docs
+- 官网: http://b-panel.cn
+- 使用文档: http://b-panel.cn/docs
 
 #### Github
 
