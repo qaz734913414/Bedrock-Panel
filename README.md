@@ -34,13 +34,14 @@
 
 #### 部署说明
 
-- 依赖环境：
-> 1
-> 2
-- 第二步
-- 第三步
-- 第四步
-- 第五步
+- 支持系统:
+- Linux：Arch Debian CentOS
+- Windows : Please Wait.
+> 安装方法:
+> 
+- Debian: Please Wait.
+- Centos: Please Wait.
+- Arch: Please Wait.
 
 ### 命令行帮助
 
