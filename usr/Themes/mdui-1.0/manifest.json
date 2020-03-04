@@ -1,0 +1,15 @@
+{
+  "name": "BedrockPanel",
+  "short_name": "BedrockPanel",
+  "description": "方便快捷地管理Minecraft服务器",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#03a9f4",
+  "background_color": "#03a9f4",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }]
+}
