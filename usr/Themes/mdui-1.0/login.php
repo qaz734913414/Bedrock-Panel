@@ -34,7 +34,6 @@
         </div>
         <div class="mdui-card-actions">
           <button class="mdui-btn mdui-ripple" id="tryLogin">登录</button>
-          <button class="mdui-btn mdui-ripple">忘记密码?</button>
         </div>
       </div>
 </div>

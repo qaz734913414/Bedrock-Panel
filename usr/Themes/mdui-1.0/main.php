@@ -108,7 +108,7 @@
       </div>
 <div class="mdui-col-xs-2"><button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" id="cmdButton"><i class="mdui-icon material-icons mdui-text-color-white" >send</i></button></div><div class="mdui-spinner mdui-spinner-colorful" id="cmdLoad" style="display:none;"></div>
 </div>
-<span class="mdui-text-color-grey" id="cmdhint"></div>
+<span class="mdui-text-color-grey" id="cmdhint"></span>
     </div>
   </div>
   
@@ -124,5 +124,4 @@
 .autocomplete-suggestion{margin-left:.5em;display:inline-block;}
 </style>
 <script>var bpApi="<?php echo bp_api_url(); ?>/action.php";</script>
-<script src="<?php echo Theme_Enable_Url; ?>/scripts/jquery.autocomplete.min.js"></script>
 <script src="<?php echo Theme_Enable_Url; ?>/scripts/bp-main.js"></script>

@@ -188,7 +188,7 @@ function getStatus()
     'upTime'=>$S->sysInfo['uptime'],
     'nowTime'=>$S->S['sTime'],
     'cpu'=>$S->cpu,
-    'mem'=>$S->sysInfo['memPercent'],
+    'mem'=>round(100-$S->sysInfo['memPercent'],2),
     );
     $isopen=`sudo mcchk sq`;
     $ret['isOpen']=(strpos($isopen,"true")!==false);

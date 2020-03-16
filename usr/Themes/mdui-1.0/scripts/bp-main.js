@@ -2,11 +2,11 @@ var timei;
 var al = new mdui.Dialog('#alert');
 var firstget = true;
 var lastcmd="";
-var hints={"?":"? [command: CommandName]<br />? &lt;page: int&gt;",help:"help [command: CommandName]<br />help &lt;page: int&gt;",deop:"deop &lt;player: target&gt;",alwaysday:"alwaysday [lock: Boolean]",give:"give &lt;player: target&gt; &lt;itemName: Item&gt; [amount: int] [data: int] [components: json]",gamemode:"gamemode &lt;gameMode: GameMode&gt; &lt;player: target&gt;<br />gamemode &lt;gameMode: int&gt; &lt;player: target&gt;",gamerule:"gamerule<br />gamerule &lt;rule: BoolGameRule&gt; [value: Boolean]<br />gamerule &lt;rule: IntGameRule&gt; [value: int]",list:"list",op:"op &lt;player: target&gt;",whitelist:"whitelist &lt;add|remove&gt; &lt;player: target&gt;",xp:"xp &lt;amount: int&gt; &lt;player: target&gt;<br />xp &lt;amount: int&gt;L &lt;player: target&gt;",me:"me &lt;message: message&gt;",msg:"msg &lt;target: target&gt; &lt;message: message&gt;",op:"op &lt;player: target&gt;",say:"say &lt;message: message&gt;",tell:"tell &lt;target: target&gt; &lt;message: message&gt;",tellraw:"tellraw &lt;target: target&gt; &lt;raw json message: json&gt;",w:"w &lt;target: target&gt; &lt;message: message&gt;",title:"title &lt;player: target&gt; clear<br />title &lt;player: target&gt; reset<br />title &lt;player: target&gt; &lt;title|subtitle|actionbar&gt; &lt;titleText: message&gt;<br />title &lt;player: target&gt; times &lt;fadeIn: int&gt; &lt;stay: int&gt; &lt;fadeOut: int&gt;"};
+var hints={"?":"? [command: CommandName]<br />? &lt;page: int&gt;",help:"help [command: CommandName]<br />help &lt;page: int&gt;",deop:"deop &lt;player: target&gt;",alwaysday:"alwaysday [lock: Boolean]",give:"give &lt;player: target&gt; &lt;itemName: Item&gt; [amount: int] [data: int] [components: json]",gamemode:"gamemode &lt;gameMode: GameMode&gt; &lt;player: target&gt;<br />gamemode &lt;gameMode: int&gt; &lt;player: target&gt;",gamerule:"gamerule<br />gamerule &lt;rule: BoolGameRule&gt; [value: Boolean]<br />gamerule &lt;rule: IntGameRule&gt; [value: int]",list:"list",op:"op &lt;player: target&gt;",whitelist:"whitelist &lt;add|remove&gt; &lt;player: target&gt;",xp:"xp &lt;amount: int&gt; &lt;player: target&gt;<br />xp &lt;amount: int&gt;L &lt;player: target&gt;",me:"me &lt;message: message&gt;",msg:"msg &lt;target: target&gt; &lt;message: message&gt;",op:"op &lt;player: target&gt;",say:"say &lt;message: message&gt;",tell:"tell &lt;target: target&gt; &lt;message: message&gt;",tellraw:"tellraw &lt;target: target&gt; &lt;raw json message: json&gt;",w:"w &lt;target: target&gt; &lt;message: message&gt;",title:"title &lt;player: target&gt; clear<br />title &lt;player: target&gt; reset<br />title &lt;player: target&gt; &lt;title|subtitle|actionbar&gt; &lt;titleText: message&gt;<br />title &lt;player: target&gt; times &lt;fadeIn: int&gt; &lt;stay: int&gt; &lt;fadeOut: int&gt;",tp:"tp &lt;destination: x y z&gt; [checkForBlocks: Boolean]<br />tp &lt;destination: x y z&gt; [yRot: value] [xRot: value] [checkForBlocks: Boolean]<br />tp &lt;destination: x y z&gt; facing &lt;lookAtPosition: x y z&gt; [checkForBlocks: Boolean]<br />tp &lt;destination: x y z&gt; facing &lt;lookAtEntity: target&gt; [checkForBlocks: Boolean]<br />tp &lt;victim: target&gt; &lt;destination: x y z&gt; [yRot: value] [xRot: value] [checkForBlocks: Boolean]<br />tp &lt;victim: target&gt; &lt;destination: x y z&gt; [checkForBlocks: Boolean]<br />tp &lt;victim: target&gt; &lt;destination: x y z&gt; facing &lt;lookAtPosition: x y z&gt; [checkForBlocks: Boolean]<br />tp &lt;victim: target&gt; &lt;destination: x y z&gt; facing &lt;lookAtEntity: target&gt; [checkForBlocks: Boolean]<br />tp &lt;destination: target&gt; [checkForBlocks: Boolean]<br />tp &lt;victim: target&gt; &lt;destination: target&gt; [checkForBlocks: Boolean]"};
 function switchServer(onoff) {
 	$("#switchLoad").attr("style", "");
 	$("#switchBtn").attr("style", "display:none;");
-	clearInterval(timei);
+	clearTimeout(timei);
 	$.ajax({
 		url: bpApi + "?action=" + onoff,
 		dataType: "json",
@@ -28,7 +28,6 @@ function switchServer(onoff) {
 			toastr.error("无法连接至服务器！");
 		},
 		complete: function() {
-			timei = setInterval("updateData();", 5000);
 			$("#switchLoad").attr("style", "display:none;");
 			$("#switchBtn").attr("style", "");
 		}
@@ -79,6 +78,9 @@ function updateData() {
 		error: function() {
 			toastr.error("无法连接至数据更新服务器！");
 			firstget = true;
+		},
+		complete: function() {
+			timei=setTimeout("updateData();",5000);
 		}
 	});
 }
@@ -97,9 +99,9 @@ function doAction() {
 		toastr.error("Xbox ID不得为空！");
 		return;
 	}
+	clearTimeout(timei);
 	$("#actionLoad").attr("style", "");
 	$("#actionButton").attr("style", "display:none;");
-	clearInterval(timei);
 	$.ajax({
 		url: bpApi + "?action=doAction",
 		data: cmdobj,
@@ -122,7 +124,6 @@ function doAction() {
 			$("#actionLoad").attr("style", "display:none;");
 			$("#actionButton").attr("style", "");
 			$("#actionInput").val("");
-			timei = setInterval("updateData();", 5000);
 			updateData();
 		}
 	});
@@ -139,7 +140,7 @@ function sendCmd() {
 	}
 	$("#cmdLoad").attr("style", "");
 	$("#cmdButton").attr("style", "display:none;");
-	clearInterval(timei);
+	clearTimeout(timei);
 	$.ajax({
 		url: bpApi + "?action=doAction",
 		data: cmdobj,
@@ -167,7 +168,6 @@ function sendCmd() {
 			$("#cmdButton").attr("style", "");
 			$("#cmdInput").val("");
             $("#cmdhint").text("");
-			timei = setInterval("updateData();", 5000);
 			updateData();
 		}
 	});
@@ -176,7 +176,6 @@ function sendCmd() {
 $(document).ready(function() {
 	document.title = "首页 - Bedrock-Panel";
 	updateData();
-	timei = setInterval("updateData();", 5000);
 	cmdButton.onclick = sendCmd;
 	actionButton.onclick = doAction;
 	$("#cmdInput").keypress(function(e) {
